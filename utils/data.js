@@ -107,8 +107,8 @@ const getRandomReactions = (int) => {
   const results = [];
   for (let i = 0; i < int; i++) {
     results.push({
-      reactionName: getRandomArrItem(appDescriptions),
-      score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
+      reactionBody: getRandomArrItem(appDescriptions),
+      username: `${getRandomArrItem(names)}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`,
     });
   }
   return results;
