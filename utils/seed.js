@@ -1,5 +1,5 @@
 const connection = require('../config/connection');
-const { Course, Student } = require('../models');
+const { Users, Student } = require('../models');
 const { getRandomName, getRandomAssignments } = require('./data');
 
 connection.on('error', (err) => err);
@@ -7,9 +7,9 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
   console.log('connected');
     // Delete the collections if they exist
-    let courseCheck = await connection.db.listCollections({ name: 'courses' }).toArray();
-    if (courseCheck.length) {
-      await connection.dropCollection('courses');
+    let usersCheck = await connection.db.listCollections({ name: 'users' }).toArray();
+    if (usersCheck.length) {
+      await connection.dropCollection('users');
     }
 
     let studentsCheck = await connection.db.listCollections({ name: 'students' }).toArray();
@@ -42,9 +42,9 @@ connection.once('open', async () => {
   // Add students to the collection and await the results
   const studentData = await Student.insertMany(students);
 
-  // Add courses to the collection and await the results
-  await Course.insertOne({
-    courseName: 'UCLA',
+  // Add users to the collection and await the results
+  await Users.insertMany({
+    usersName: 'UCLA',
     inPerson: false,
     students: [...studentData.map(({_id}) => _id)],
   });

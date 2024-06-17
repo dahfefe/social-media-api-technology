@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create a course model
-const courseSchema = new Schema(
+// Schema to create a users model
+const usersSchema = new Schema(
   {
-    courseName: {
+    usersName: {
       type: String,
       required: true,
     },
@@ -35,6 +35,6 @@ const courseSchema = new Schema(
   }
 );
 
-const Course = model('course', courseSchema);
+const Users = model('users', usersSchema);
 
-module.exports = Course;
+module.exports = Users;
