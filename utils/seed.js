@@ -17,13 +17,18 @@ connection.once('open', async () => {
       await connection.dropCollection('thoughts');
     }
 
+    let friendsCheck = await connection.db.listCollections({ name: 'friends' }).toArray();
+    if (friendsCheck.length) {
+      await connection.dropCollection('friends');
+    }
 
-  // Create empty array to hold the thoughts
+
+  // Create empty array to hold the thought(s) and friend(s)
   const thoughts = [];
   const friends = [];
 
-  // Loop 5 times -- add thoughts to the thoughts array
-  for (let i = 0; i < 5; i++) {
+  // Loop 3 times -- add thoughts to the thoughts array
+  for (let i = 0; i < 3; i++) {
     // Get some random reaction objects using a helper function that we imported from ./data
     const reactions = getRandomReactions(2);
 

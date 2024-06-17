@@ -22,6 +22,12 @@ const usersSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'user',
       },
+        {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
     ],
   },
   {
