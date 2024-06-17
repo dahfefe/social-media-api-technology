@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { Users, Thought } = require('../models');
-const { getRandomName, getRandomAssignments } = require('./data');
+const { getRandomName, getRandomReactions } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -23,8 +23,8 @@ connection.once('open', async () => {
 
   // Loop 5 times -- add thoughts to the thoughts array
   for (let i = 0; i < 5; i++) {
-    // Get some random assignment objects using a helper function that we imported from ./data
-    const assignments = getRandomAssignments(2);
+    // Get some random reaction objects using a helper function that we imported from ./data
+    const reactions = getRandomReactions(2);
 
     var fullName = getRandomName();
     var first = fullName.split(' ')[0];
@@ -35,7 +35,7 @@ connection.once('open', async () => {
       first,
       last,
       github,
-      assignments,
+      reactions,
     });
   }
 

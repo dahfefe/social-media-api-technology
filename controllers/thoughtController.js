@@ -14,12 +14,12 @@ const grade = async (thoughtsId) =>
     // only include the given thought by using $match
     { $match: { _id: new ObjectId(thoughtsId) } },
     {
-      $unwind: '$assignments',
+      $unwind: '$reactions',
     },
     {
       $group: {
         _id: new ObjectId(thoughtsId),
-        overallGrade: { $avg: '$assignments.score' },
+        overallGrade: { $avg: '$reactions.score' },
       },
     },
   ]);
@@ -97,15 +97,15 @@ module.exports = {
     }
   },
 
-  // Add an assignment to a thought
-  async addAssignment(req, res) {
-    console.log('You are adding an assignment');
+  // Add a reaction to a thought
+  async addReaction(req, res) {
+    console.log('You are adding a reaction');
     console.log(req.body);
 
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtsId },
-        { $addToSet: { assignments: req.body } },
+        { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
 
@@ -120,12 +120,12 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a thought
-  async removeAssignment(req, res) {
+  // Remove reaction from a thought
+  async removeReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtsId },
-        { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
+        { $pull: { reaction: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
