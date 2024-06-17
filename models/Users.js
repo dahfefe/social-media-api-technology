@@ -3,16 +3,20 @@ const { Schema, model } = require('mongoose');
 // Schema to create a users model
 const usersSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true,
-    },
     students: [
       {
         type: Schema.Types.ObjectId,
         ref: 'student',
       },
     ],
+    username: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
   },
   {
     toJSON: {
