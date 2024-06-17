@@ -3,7 +3,7 @@ const { Thought, Users } = require('../models');
 
 // Aggregate function to get the number of thoughts overall
 const headCount = async () => {
-  const numberOfThoughts = await Thoughts.aggregate()
+  const numberOfThoughts = await Thought.aggregate()
     .count('thoughtCount');
   return numberOfThoughts;
 }
