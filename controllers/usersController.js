@@ -1,11 +1,11 @@
 const { Users, Thought } = require('../models');
 
 // Aggregate function to get the number of friends overall
-const headCount = async () => {
-  const numberOfFriends = await Users.aggregate()
-    .count('friendCount');
-  return numberOfFriends;
-}
+// const headCount = async () => {
+//   const numberOfFriends = await Users.aggregate()
+//     .count('friendCount');
+//   return numberOfFriends;
+// }
 
 module.exports = {
   // Get all users
@@ -15,7 +15,7 @@ module.exports = {
 
       const usersObj = {
         users,
-        headCount: await headCount(),
+        // headCount: await headCount(),
       };
 
       res.json(usersObj);
