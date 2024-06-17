@@ -20,6 +20,7 @@ connection.once('open', async () => {
 
   // Create empty array to hold the thoughts
   const thoughts = [];
+  const friends = [];
 
   // Loop 5 times -- add thoughts to the thoughts array
   for (let i = 0; i < 5; i++) {

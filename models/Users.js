@@ -3,12 +3,6 @@ const { Schema, model } = require('mongoose');
 // Schema to create a users model
 const usersSchema = new Schema(
   {
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'thought',
-      },
-    ],
     username: {
       type: String,
       required: true,
@@ -17,6 +11,18 @@ const usersSchema = new Schema(
       type: String,
       required: true,
     },
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'thought',
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+      },
+    ],
   },
   {
     toJSON: {
