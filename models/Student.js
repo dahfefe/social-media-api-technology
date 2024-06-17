@@ -19,6 +19,10 @@ const studentSchema = new Schema(
       required: true,
       max_length: 50,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
     assignments: [assignmentSchema],
   },
   {
