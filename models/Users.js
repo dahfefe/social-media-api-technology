@@ -7,10 +7,6 @@ const usersSchema = new Schema(
       type: String,
       required: true,
     },
-    inPerson: {
-      type: Boolean,
-      default: true,
-    },
     startDate: {
       type: Date,
       default: Date.now(),

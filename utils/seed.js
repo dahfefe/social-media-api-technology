@@ -45,7 +45,6 @@ connection.once('open', async () => {
   // Add users to the collection and await the results
   await Users.insertMany({
     username: 'UCLA',
-    inPerson: false,
     students: [...studentData.map(({_id}) => _id)],
   });
 
