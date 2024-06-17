@@ -1,10 +1,10 @@
-const { Users, Student } = require('../models');
+const { Users, Thought } = require('../models');
 
 module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
-      const users = await Users.find().populate('students');
+      const users = await Users.find().populate('thoughts');
       res.json(users);
     } catch (err) {
       res.status(500).json(err);
@@ -14,7 +14,7 @@ module.exports = {
   async getSingleUser(req, res) {
     try {
       const user = await Users.findOne({ _id: req.params.usersId })
-        .populate('students');
+        .populate('thoughts');
 
       if (!user) {
         return res.status(404).json({ message: 'No user with that ID' });
@@ -44,8 +44,8 @@ module.exports = {
         res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Student.deleteMany({ _id: { $in: users.students } });
-      res.json({ message: 'User and students deleted!' });
+      await Thought.deleteMany({ _id: { $in: users.thoughts } });
+      res.json({ message: 'User and thoughts deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }

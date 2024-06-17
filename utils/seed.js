@@ -1,5 +1,5 @@
 const connection = require('../config/connection');
-const { Users, Student } = require('../models');
+const { Users, Thought } = require('../models');
 const { getRandomName, getRandomAssignments } = require('./data');
 
 connection.on('error', (err) => err);
@@ -12,17 +12,17 @@ connection.once('open', async () => {
       await connection.dropCollection('users');
     }
 
-    let studentsCheck = await connection.db.listCollections({ name: 'students' }).toArray();
-    if (studentsCheck.length) {
-      await connection.dropCollection('students');
+    let thoughtsCheck = await connection.db.listCollections({ name: 'thoughts' }).toArray();
+    if (thoughtsCheck.length) {
+      await connection.dropCollection('thoughts');
     }
 
 
-  // Create empty array to hold the students
-  const students = [];
+  // Create empty array to hold the thoughts
+  const thoughts = [];
 
-  // Loop 20 times -- add students to the students array
-  for (let i = 0; i < 20; i++) {
+  // Loop 5 times -- add thoughts to the thoughts array
+  for (let i = 0; i < 5; i++) {
     // Get some random assignment objects using a helper function that we imported from ./data
     const assignments = getRandomAssignments(2);
 
@@ -31,7 +31,7 @@ connection.once('open', async () => {
     var last = fullName.split(' ')[1];
     var github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
-    students.push({
+    thoughts.push({
       first,
       last,
       github,
@@ -39,18 +39,18 @@ connection.once('open', async () => {
     });
   }
 
-  // Add students to the collection and await the results
-  const studentData = await Student.insertMany(students);
+  // Add thoughts to the collection and await the results
+  const thoughtData = await Thought.insertMany(thoughts);
 
   // Add users to the collection and await the results
   await Users.insertMany({
     username: `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`,
     email: `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}@gmail.com`,
-    students: [...studentData.map(({_id}) => _id)],
+    thoughts: [...thoughtData.map(({_id}) => _id)],
   });
 
   // Log out the seed data to indicate what should appear in the database
-  console.table(students);
+  console.table(thoughts);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });

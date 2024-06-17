@@ -1,8 +1,8 @@
 const { Schema, model } = require('mongoose');
 const assignmentSchema = require('./Assignment');
 
-// Schema to create Student model
-const studentSchema = new Schema(
+// Schema to create Thought model
+const thoughtSchema = new Schema(
   {
     first: {
       type: String,
@@ -32,6 +32,6 @@ const studentSchema = new Schema(
   }
 );
 
-const Student = model('student', studentSchema);
+const Thought = model('thought', thoughtSchema);
 
-module.exports = Student;
+module.exports = Thought;

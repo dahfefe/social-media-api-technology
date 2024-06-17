@@ -3,10 +3,10 @@ const { Schema, model } = require('mongoose');
 // Schema to create a users model
 const usersSchema = new Schema(
   {
-    students: [
+    thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'student',
+        ref: 'thought',
       },
     ],
     username: {
