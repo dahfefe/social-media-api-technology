@@ -14,7 +14,7 @@ This project includes backend technology a social network web application where 
 
 GitHub repo link: https://github.com/dahfefe/social-media-api-technology
 
-Video Link for How to Use: https://watch.screencastify.com/v/MSS6w65QwOA4l1TLaq0f
+Video Link for How to Use: https://www.youtube.com/watch?v=0l9GZr5X8aQ
 
 ## What I Learned
   
