@@ -20,7 +20,7 @@ router
   .delete(deleteUser);
 
 // /api/users/:usersId/friends
-router.route('/:usersId/friends').post(addFriend);
+router.route('/:usersId/friends/:friendId').post(addFriend);
 
 // /api/users/:usersId/friends/:friendId
 router.route('/:usersId/friends/:friendId').delete(removeFriend);
