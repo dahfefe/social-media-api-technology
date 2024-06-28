@@ -57,7 +57,7 @@ module.exports = {
         res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Thought.deleteMany({ _id: { $in: users.thoughts } });
+      await Thought.deleteMany({ _id: { $in: user.thoughts } });
       res.json({ message: 'User and thoughts deleted!' });
     } catch (err) {
       res.status(500).json(err);
@@ -90,7 +90,7 @@ module.exports = {
     try {
       const user = await Users.findOneAndUpdate(
         { _id: req.params.usersId },
-        { $addToSet: { friends: req.body } },
+        { $addToSet: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
 
@@ -110,7 +110,7 @@ module.exports = {
     try {
       const user = await Users.findOneAndUpdate(
         { _id: req.params.usersId },
-        { $pull: { friend: { friendId: req.params.friendId } } },
+        { $pull: { friends: { friendId: req.params.friendId } } },
         { runValidators: true, new: true }
       );
 
