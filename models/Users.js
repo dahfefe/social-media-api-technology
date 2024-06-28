@@ -6,6 +6,7 @@ const usersSchema = new Schema(
     username: {
       type: String,
       required: true,
+      trim: true,
     },
     email: {
       type: String,
@@ -22,7 +23,7 @@ const usersSchema = new Schema(
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'users',
       },
         {
     toJSON: {
@@ -32,12 +33,6 @@ const usersSchema = new Schema(
   }
     ],
   },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-    id: false,
-  }
 );
 
 usersSchema.virtual('friendCount').get(function () {
